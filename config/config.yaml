@@ -1,3 +1,4 @@
 get_arangoDB_URL: 'https://development.kpi-drive.ru/_api/events'
 post_MySQL_URL: 'https://development.kpi-drive.ru/_api/facts/save_fact'
 get_session_URL: 'https://development.kpi-drive.ru/_api/auth/login?login=%s&password=%s'
+sql_limit: 10

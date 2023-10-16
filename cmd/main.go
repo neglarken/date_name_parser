@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/joho/godotenv"
@@ -14,7 +13,7 @@ var (
 )
 
 func init() {
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		log.Fatal("No .env file found")
 	}
 }
@@ -29,13 +28,16 @@ func main() {
 		log.Fatal(err)
 	}
 
-	_, err = reqs.Auth("admin", "admin")
+	_, err = reqs.Auth(config.Login, config.Password)
 	if err != nil {
 		log.Fatal(err)
 	}
-	res, err := reqs.GetDataFromDB()
+	res, err := reqs.GetDataFromDB(config.SqlLimit)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("res: %v\n", res)
+	err = reqs.PostDataToMySQL(res)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

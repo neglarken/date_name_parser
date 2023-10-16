@@ -6,6 +6,9 @@ type Config struct {
 	GetArangoDbURL string `yaml:"get_arangoDB_URL"`
 	PostMySqlURL   string `yaml:"post_MySQL_URL"`
 	GetSessionURL  string `yaml:"get_session_URL"`
+	SqlLimit       int    `yaml:"sql_limit"`
+	Login          string `env:"LOGIN"`
+	Password       string `env:"PASSWORD"`
 	Token          string `env:"TOKEN"`
 }
 
