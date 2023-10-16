@@ -1,0 +1,3 @@
+getArangoDbURL: 'https://development.kpi-drive.ru/_api/events'
+postMySqlURL: 'https://development.kpi-drive.ru/_api/facts/save_fact'
+getSessionURL: 'https://development.kpi-drive.ru/_api/auth/login'
