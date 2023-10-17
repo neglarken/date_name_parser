@@ -24,12 +24,6 @@ var (
 	]`
 	comment string = `{
 		"indicator_to_mo_id":%s,
-		"period":{
-			"end":"%s",
-			"start":"%s",
-			"type_id":%s,
-			"type_key":"%s"
-		},
 		"platform":"%s"}`
 )
 
@@ -55,12 +49,10 @@ func (r *Requests) PostDataToMySQL(data *model.Event) error {
 		form.Set("comment", fmt.Sprintf(
 			comment,
 			data.Rows[i].Params.IndicatorToMyId,
-			data.Rows[i].Params.End,
-			data.Rows[i].Params.Start,
-			data.Rows[i].Params.TypeId,
-			data.Rows[i].Params.TypeKey,
 			data.Rows[i].Params.Platform,
 		))
+		form.Set("period_start", data.Rows[i].Period.Start)
+		form.Set("period_end", data.Rows[i].Period.End)
 
 		req, err := http.NewRequest("POST", r.Cfg.PostMySqlURL, strings.NewReader(form.Encode()))
 		if err != nil {
